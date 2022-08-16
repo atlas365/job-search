@@ -43,7 +43,9 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     elevation: 3,
     backgroundColor: '#009688',
-    marginTop: 50
+    marginTop: 50,
+    shadowOffset: { width: 1, height: 1 },
+    shadowOpacity: 0.5
   },
   buttonText: {
     fontSize: 16,

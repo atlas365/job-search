@@ -1,8 +1,10 @@
-import * as React from 'react';
-import { Button } from 'react-native'
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import * as React from 'react'
+import { Provider } from 'react-redux'
+import { NavigationContainer } from '@react-navigation/native'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+
+import store from './src/store'
 
 import AuthScreen from './src/screens/AuthScreen'
 import WelcomeScreen from './src/screens/WelcomeScreen'
@@ -10,7 +12,7 @@ import MapScreen from './src/screens/MapScreen'
 import DeckScreen from './src/screens/DeckScreen'
 import SettingsScreen from './src/screens/SettingsScreen'
 import ReviewScreen from './src/screens/ReviewScreen'
-import HeaderButton from './src/components/HeaderButton';
+import HeaderButton from './src/components/HeaderButton'
 
 const ReviewStack = createNativeStackNavigator()
 function ReviewStacks() {
@@ -57,13 +59,16 @@ function HomeTabs() {
 
 const MainTab = createBottomTabNavigator();
 export default function App() {
+
   return (
-    <NavigationContainer>
-      <MainTab.Navigator>
-        <MainTab.Screen name="Auth" component={AuthScreen} />
-        <MainTab.Screen name="Welcome" component={WelcomeScreen} options={{headerShown: false}}/>
-        <MainTab.Screen name="Main" component={HomeTabs} />
-      </MainTab.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <MainTab.Navigator>
+          <MainTab.Screen name="Auth" component={AuthScreen} />
+          <MainTab.Screen name="Welcome" component={WelcomeScreen} options={{headerShown: false}}/>
+          <MainTab.Screen name="Main" component={HomeTabs} />
+        </MainTab.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
