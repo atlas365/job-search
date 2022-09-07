@@ -1,25 +1,32 @@
 import React from 'react'
-import { Text, View } from 'react-native'
-import { Button } from 'react-native-elements'
-import { useSelector, useDispatch } from 'react-redux'
-import { facebookLogin } from '../reducers'
+import { Text, View, Button } from 'react-native'
+import useAuthState from '../hooks/useAuthState'
+import useFacebookLogin from '../hooks/useFacebookLogin'
+
 
 const AuthScreen = () => {
-  //const token = useSelector((state) => state.token)
+  const { authState } = useAuthState()
+  console.log('state', authState)
   
-  //const dispatch = useDispatch()
+  const { doFacebookLogin } = useFacebookLogin()
+
   return (
     <View>
       <Text>
         Auth Screen
       </Text>
       <Text>
-        {'nope'}
+        {authState.token ?? ''}
       </Text>
       <Text>
-        Auth Screen
+      <Text>
+        {authState.name ?? ''}
       </Text>
-      
+      </Text>
+      <Button
+        title="Login"
+        onPress={doFacebookLogin}
+      />
     </View>
   )
 }

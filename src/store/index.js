@@ -1,10 +1,24 @@
-import { configureStore } from '@reduxjs/toolkit'
-import authReducer from '../reducers'
+import { MMKV } from 'react-native-mmkv' 
 
-const store = configureStore({
-  reducer: {
-    auth: authReducer
+let storage
+let loggedErrorOnce = false
+const getStorage = () => {
+  if (!storage) {
+    try {
+      storage = new MMKV()
+    } catch (e) {
+      if (!loggedErrorOnce) {
+        loggedErrorOnce = true
+        console.error('Error initializing MMKV storage:', e)
+      }
+    }
   }
-})
+  return storage
+}
 
-export default store
+const Storage = {
+  getItem: (key) => getStorage()?.getString(key),
+  setItem: (key, value) => getStorage()?.set(key, value),
+}
+
+export default Storage
