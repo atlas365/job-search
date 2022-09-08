@@ -1,8 +1,10 @@
+
+import React from 'react'
 import useAuthState from "../hooks/useAuthState"
 
 const Provider = () => {
   const { initAuthState } = useAuthState()
-  initAuthState()
+  React.useEffect(() => initAuthState(), [])
   return null
 }
 

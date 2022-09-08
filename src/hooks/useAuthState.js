@@ -16,12 +16,14 @@ const useAuthState = () => {
   }
 
   const logout = () => {
-
+    Storage.setItem('auth_state', JSON.stringify({}))
+    setAuthState({})
   }
 
   const initAuthState = () => {
     const state = Storage.getItem('auth_state')
     if (state) {
+      console.log('from storage', state)
       setAuthState(JSON.parse(state))
     }
   }

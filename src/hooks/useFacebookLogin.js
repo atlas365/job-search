@@ -21,7 +21,7 @@ const useFacebookLogin = () => {
         const { name, id } = (await response.json())
         login({ token, name, id })
       } else if (type === 'cancel') {
-        console.log('cancle')
+        console.log('cancel')
       } else {
         console.log('Error loggin in')
 

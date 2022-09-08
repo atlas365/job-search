@@ -62,8 +62,8 @@ export default function App() {
       <Provider />
       <NavigationContainer>
         <MainTab.Navigator>
-          <MainTab.Screen name="Auth" component={AuthScreen} />
           <MainTab.Screen name="Welcome" component={WelcomeScreen} options={{headerShown: false}}/>
+          <MainTab.Screen name="Auth" component={AuthScreen} options={{headerShown: false}} />
           <MainTab.Screen name="Main" component={HomeTabs} />
         </MainTab.Navigator>
       </NavigationContainer>
