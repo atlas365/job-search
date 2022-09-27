@@ -23,7 +23,6 @@ const useAuthState = () => {
   const initAuthState = () => {
     const state = Storage.getItem('auth_state')
     if (state) {
-      console.log('from storage', state)
       setAuthState(JSON.parse(state))
     }
   }

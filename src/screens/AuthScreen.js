@@ -1,29 +1,30 @@
+import { useNavigation } from '@react-navigation/native'
 import React from 'react'
-import { Text, View, Pressable, StyleSheet, Image } from 'react-native'
+import { Text, View, Pressable, StyleSheet } from 'react-native'
 import useAuthState from '../hooks/useAuthState'
 import useFacebookLogin from '../hooks/useFacebookLogin'
-
 
 const AuthScreen = () => {
   const { authState, logout } = useAuthState()
   const { doFacebookLogin } = useFacebookLogin()
+  const { navigate } = useNavigation()
 
-  // React.useEffect(() => {
-  //   if (!authState?.token) {
-  //     doFacebookLogin()
-  //   }
-  // }, [authState, doFacebookLogin])
+  React.useEffect(() => {
+    if (authState.token) {
+      navigate('Main', { screen: 'Map' })
+    }
+  }, [authState.token])
 
   return (
     <View style={styles.container}>
-      <Text>
-        {authState.token ?? ''}
+      <Text style={styles.header}>
+        Welcome!
       </Text>
-      <Text>
-      <Text>
-        {authState.name ?? ''}
+
+      <Text style={styles.message}>
+        Login to get started
       </Text>
-      </Text>
+
       {!authState?.token &&
         <Pressable
           style={styles.facebook}
@@ -32,12 +33,13 @@ const AuthScreen = () => {
           <Text style={styles.facebookText}>Login with Facebook</Text>
         </Pressable>
       }
-      {authState?.token &&
+      {authState.token &&
         <Pressable
-          title="Logout"
-          onPress={logout}
-        />
-      }
+          style={styles.facebook}
+          onPress={logout}>
+          <Text style={styles.facebookText}>Logout</Text>
+        </Pressable>
+      }     
     </View>
   )
 }
@@ -67,7 +69,15 @@ const styles = StyleSheet.create({
   facebookLogo: {
     width: 24,
     height: 24,
-  }
+  },
+  header: {
+    fontSize: 32,
+    paddingBottom: 16
+  },
+  message: {
+    fontSize: 16,
+    paddingBottom: 16
+  },
 })
 
 export default AuthScreen
