@@ -1,7 +1,8 @@
 import { useNavigation } from '@react-navigation/native'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { StyleSheet, View } from 'react-native'
 import Slides from '../components/Slides'
+import useAuthState from '../hooks/useAuthState'
 
 const SLIDE_DATA = [
   {
@@ -21,8 +22,15 @@ const SLIDE_DATA = [
 const WelcomeScreen = () => {
 
   const { navigate } = useNavigation()
+  const { authState } = useAuthState()
 
-  return (
+  useEffect(() => {
+    if (authState.token) {
+      navigate('Main', { screen: 'Map' })
+    }
+  }, [authState.token])
+
+  return (   
     <View style={styles.main}>
       <Slides slides={SLIDE_DATA} onFinish={() => {navigate('Auth')}} />
     </View>

@@ -49,7 +49,7 @@ function HomeTabs() {
       />
       <HomeTab.Screen 
         name="ReviewStack" 
-        component={ReviewStacks} 
+        component={ReviewStacks}
       />
     </HomeTab.Navigator>
   );
@@ -62,9 +62,21 @@ export default function App() {
       <Provider />
       <NavigationContainer>
         <MainTab.Navigator>
-          <MainTab.Screen name="Welcome" component={WelcomeScreen} options={{headerShown: false}}/>
-          <MainTab.Screen name="Auth" component={AuthScreen} options={{headerShown: false}} />
-          <MainTab.Screen name="Main" component={HomeTabs} />
+          <MainTab.Screen
+            name="Welcome"
+            component={WelcomeScreen}
+            options={{ headerShown: false, tabBarStyle: { display: 'none' }}}
+          />
+          <MainTab.Screen
+            name="Auth"
+            component={AuthScreen}
+            options={{ headerShown: false, tabBarStyle: { display: 'none' }}}
+          />
+          <MainTab.Screen
+            name="Main"
+            component={HomeTabs}
+            options={{ headerShown: false, tabBarStyle: { display: 'none' }}}
+          />
         </MainTab.Navigator>
       </NavigationContainer>
     </>
