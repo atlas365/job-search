@@ -6,15 +6,15 @@ import useAuthState from '../hooks/useAuthState'
 
 const SLIDE_DATA = [
   {
-    text: 'Welcome to the Jobs App!',
+    text: 'Welcome to Eat Somewhere!',
     color: '#03A9F4'
   },
   {
-    text: 'Use this to get a job',
+    text: 'Use this to find a place to eat',
     color: '#009688'
   },
   {
-    text: 'Set your locations, then swipe away',
+    text: 'Set your location, then swipe away',
     color: '#03A9F4'
   }
 ]

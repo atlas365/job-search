@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "jobs",
-    "slug": "jobs",
+    "name": "Eat Somewhere",
+    "slug": "eat-somewhere",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

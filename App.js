@@ -11,16 +11,17 @@ import SettingsScreen from './src/screens/SettingsScreen'
 import ReviewScreen from './src/screens/ReviewScreen'
 import HeaderButton from './src/components/HeaderButton'
 import Provider from './src/store/Provider'
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 const ReviewStack = createNativeStackNavigator()
 function ReviewStacks() {
   return (
     <ReviewStack.Navigator>
       <ReviewStack.Screen
-        name="Review"
+        name="Liked Restautants"
         component={ReviewScreen}
         options={{
-          title: "Review Jobs",
+          title: "Liked Restaurants",
           headerRight: () => (
             <HeaderButton title={'Settings'} destination={'Settings'} />
           )
@@ -40,16 +41,45 @@ function HomeTabs() {
   return (
     <HomeTab.Navigator>
       <HomeTab.Screen
+      
         name="Map"
         component={MapScreen}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({color}) => {
+            return (
+              <Ionicons name="location" size={30} color={color} />
+            )
+          },
+          title: 'Search',
+          tabBarShowLabel: false
+        }}
       />
       <HomeTab.Screen
         name="Deck"
         component={DeckScreen}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({color}) => {
+            return (
+              <Ionicons name="pizza" size={30} color={color} />
+            )
+          },
+          tabBarShowLabel: false
+        }}
       />
       <HomeTab.Screen 
         name="ReviewStack" 
         component={ReviewStacks}
+        options={{
+          headerShown: false,
+          tabBarIcon: ({color}) => {
+            return (
+              <Ionicons name="list" size={30} color={color} />
+            )
+          },
+          tabBarShowLabel: false
+        }}
       />
     </HomeTab.Navigator>
   );
